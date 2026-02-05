@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmpowerHub - Financial Literacy Coaching</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Source+Sans+Pro:wght@300;400;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #2A9D8F;
+      --gold: #E9B949;
+      --coral: #E76F51;
+      --soft-green: #8AB17D;
+      --cream: #FDF8F3;
+      --dark: #264653;
+    }
+    
+    body {
+      box-sizing: border-box;
+    }
+    .font-display { font-family: 'Playfair Display', serif; }
+    .font-body { font-family: 'Source Sans Pro', sans-serif; }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--cream) 0%, #f5ede0 100%);
+    }
+    
+    .gradient-accent {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--teal) 50%, var(--soft-green) 100%);
+    }
+    
+    .gold-gradient {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 50%, var(--soft-green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .card-glass {
+      background: linear-gradient(135deg, rgba(42, 157, 143, 0.1) 0%, rgba(139, 177, 125, 0.08) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(231, 111, 81, 0.25);
+    }
+    
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(231, 111, 81, 0.4);
+    }
+    
+    .book-card {
+      background: linear-gradient(145deg, #2A4D4A 0%, #1f4f47 50%, #3a6b65 100%);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+    
+    .book-cover {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 50%, var(--teal) 100%);
+      box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--coral));
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .event-card {
+      background: linear-gradient(135deg, rgba(138, 177, 125, 0.15) 0%, rgba(42, 157, 143, 0.1) 100%);
+      border-left: 4px solid var(--coral);
+      transition: all 0.3s ease;
+    }
+    
+    .event-card:hover {
+      border-left-color: var(--gold);
+      transform: translateX(4px);
+    }
+    
+    .input-field {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(231, 111, 81, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .input-field:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 20px rgba(42, 157, 143, 0.3);
+      outline: none;
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 16px 24px;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      z-index: 1000;
+      transform: translateX(150%);
+      transition: transform 0.3s ease;
+    }
+    
+    .toast.show {
+      transform: translateX(0);
+    }
+    
+    .toast.success {
+      background: linear-gradient(135deg, var(--soft-green) 0%, var(--teal) 100%);
+    }
+    
+    .toast.error {
+      background: linear-gradient(135deg, var(--coral) 0%, #d94632 100%);
+    }
+    
+    /* Hero section gradient background */
+    #hero-title {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--teal) 50%, var(--coral) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Section heading colors */
+    .section-heading {
+      color: var(--dark);
+    }
+    
+    /* Accent text colors */
+    .text-accent-teal {
+      color: var(--teal);
+    }
+    
+    .text-accent-coral {
+      color: var(--coral);
+    }
+    
+    .text-accent-gold {
+      color: var(--gold);
+    }
+    
+    .text-accent-green {
+      color: var(--soft-green);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full font-body">
+  <div id="app" class="w-full h-full gradient-bg text-white overflow-auto"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-95 backdrop-blur-md border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+     <div class="font-display text-2xl font-bold" id="nav-logo" style="background: linear-gradient(135deg, var(--dark) 0%, var(--teal) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+      EmpowerHub
+     </div>
+     <div class="hidden md:flex space-x-8"><a href="#about" class="nav-link" style="color: var(--dark);">About</a> <a href="#events" class="nav-link" style="color: var(--dark);">Events</a> <a href="#book" class="nav-link" style="color: var(--dark);">Book</a> <a href="#contact" class="nav-link" style="color: var(--dark);">Contact</a>
+     </div><a href="#contact" class="btn-gold text-gray-900 font-semibold px-6 py-2 rounded-full">Work With Me</a>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="min-h-screen flex items-center justify-center px-6 pt-20 bg-white">
+    <div class="max-w-4xl text-center fade-in-up">
+     <div class="mb-6"><span class="font-semibold tracking-widest uppercase text-sm" style="color: var(--coral);">Financial Literacy Coaching</span>
+     </div>
+     <h1 id="hero-title" class="font-display text-5xl md:text-7xl font-bold mb-6">EmpowerHub</h1>
+     <p id="hero-subtitle" class="text-xl md:text-2xl font-semibold mb-10 max-w-2xl mx-auto leading-relaxed" style="color: var(--teal);">Transform your relationship with money. Build wealth with confidence. Create the financial future you deserve.</p>
+     <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#contact" class="btn-gold text-gray-900 font-bold px-10 py-4 rounded-full text-lg">Start Your Journey</a> <a href="#about" class="border-2 font-bold px-10 py-4 rounded-full text-lg transition-all" style="border-color: var(--teal); color: var(--teal); background: rgba(42, 157, 143, 0.1);" onmouseover="this.style.background='var(--teal)'; this.style.color='white';" onmouseout="this.style.background='rgba(42, 157, 143, 0.1)'; this.style.color='var(--teal)';">Learn More</a>
+     </div>
+     <div class="mt-16 flex justify-center space-x-12 text-center">
+      <div>
+       <div class="text-3xl font-bold" style="background: linear-gradient(135deg, var(--gold), var(--coral)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        500+
+       </div>
+       <div class="text-gray-600 text-sm">
+        Lives Changed
+       </div>
+      </div>
+      <div>
+       <div class="text-3xl font-bold" style="background: linear-gradient(135deg, var(--teal), var(--soft-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        50+
+       </div>
+       <div class="text-gray-600 text-sm">
+        Workshops
+       </div>
+      </div>
+      <div>
+       <div class="text-3xl font-bold" style="background: linear-gradient(135deg, var(--coral), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        5★
+       </div>
+       <div class="text-gray-600 text-sm">
+        Reviews
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div><span class="font-semibold tracking-widest uppercase text-sm" style="color: var(--coral);">My Story</span>
+       <h2 id="about-title" class="font-display text-4xl md:text-5xl font-bold mt-4 mb-6" style="color: var(--dark);">Why I Do This</h2>
+       <p id="about-text" class="text-gray-700 text-lg leading-relaxed mb-6">I believe everyone deserves access to financial knowledge that can transform their lives. After witnessing too many people struggle with money—not because they don't work hard, but because no one taught them the fundamentals—I made it my mission to bridge that gap.</p>
+       <p class="text-gray-700 text-lg leading-relaxed mb-6">EmpowerHub was born from a simple belief: financial literacy isn't a luxury, it's a necessity. Through personalized coaching, engaging workshops, and practical resources, I help individuals and families take control of their financial destinies.</p>
+       <div class="grid grid-cols-2 gap-6 mt-10">
+        <div class="card-glass p-6 rounded-xl" style="background: linear-gradient(135deg, rgba(42, 157, 143, 0.15) 0%, rgba(138, 177, 125, 0.1) 100%); border: 1px solid rgba(42, 157, 143, 0.3);">
+         <div class="text-3xl mb-2">
+          💡
+         </div>
+         <h3 class="font-semibold text-lg mb-2" style="color: var(--teal);">Education First</h3>
+         <p class="text-gray-600 text-sm">Making complex concepts simple and actionable</p>
+        </div>
+        <div class="card-glass p-6 rounded-xl" style="background: linear-gradient(135deg, rgba(231, 111, 81, 0.1) 0%, rgba(233, 185, 73, 0.1) 100%); border: 1px solid rgba(231, 111, 81, 0.3);">
+         <div class="text-3xl mb-2">
+          🤝
+         </div>
+         <h3 class="font-semibold text-lg mb-2" style="color: var(--coral);">Personal Touch</h3>
+         <p class="text-gray-600 text-sm">Tailored guidance for your unique journey</p>
+        </div>
+       </div>
+      </div>
+      <div class="card-glass p-8 rounded-2xl" style="background: linear-gradient(135deg, rgba(42, 157, 143, 0.12) 0%, rgba(138, 177, 125, 0.08) 100%); border: 1px solid rgba(42, 157, 143, 0.3);">
+       <h3 class="font-display text-2xl font-bold mb-6" style="color: var(--teal);">What You'll Learn</h3>
+       <ul class="space-y-4">
+        <li class="flex items-start space-x-4"><span style="color: var(--coral); font-size: 1.25rem;">✓</span> <span class="text-gray-700">Budgeting strategies that actually stick</span></li>
+        <li class="flex items-start space-x-4"><span style="color: var(--teal); font-size: 1.25rem;">✓</span> <span class="text-gray-700">Debt elimination and credit building</span></li>
+        <li class="flex items-start space-x-4"><span style="color: var(--soft-green); font-size: 1.25rem;">✓</span> <span class="text-gray-700">Saving and investing fundamentals</span></li>
+        <li class="flex items-start space-x-4"><span style="color: var(--gold); font-size: 1.25rem;">✓</span> <span class="text-gray-700">Building generational wealth</span></li>
+        <li class="flex items-start space-x-4"><span style="color: var(--coral); font-size: 1.25rem;">✓</span> <span class="text-gray-700">Money mindset transformation</span></li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section><!-- Events Section -->
+   <section id="events" class="py-24 px-6" style="background: linear-gradient(135deg, rgba(42, 157, 143, 0.08) 0%, rgba(138, 177, 125, 0.05) 100%);">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16"><span class="font-semibold tracking-widest uppercase text-sm" style="color: var(--coral);">Join Us</span>
+      <h2 class="font-display text-4xl md:text-5xl font-bold mt-4" style="color: var(--dark);">Upcoming Events</h2>
+      <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Connect, learn, and grow with our community through regular workshops and coaching sessions.</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Recurring Event -->
+      <div class="event-card p-6 rounded-xl" style="background: linear-gradient(135deg, rgba(42, 157, 143, 0.15) 0%, rgba(138, 177, 125, 0.1) 100%); border-left: 4px solid var(--teal);">
+       <div class="flex items-center space-x-3 mb-4"><span class="text-3xl">📅</span>
+        <div>
+         <div class="font-semibold" style="color: var(--teal);">
+          Every 3rd Tuesday
+         </div>
+         <div class="text-gray-600 text-sm">
+          Monthly Zoom Call
+         </div>
+        </div>
+       </div>
+       <h3 class="font-display text-xl font-bold mb-3" style="color: var(--dark);">Financial Freedom Workshop</h3>
+       <p class="text-gray-600 mb-4">Join our monthly community call where we discuss strategies, answer questions, and support each other's financial journeys.</p>
+       <div class="flex items-center space-x-2 text-sm" style="color: var(--coral);"><span>⏰</span> <span>7:00 PM EST</span> <span>•</span> <span>🌐</span> <span>Zoom</span>
+       </div>
+      </div><!-- Workshop -->
+      <div class="event-card p-6 rounded-xl" style="background: linear-gradient(135deg, rgba(231, 111, 81, 0.12) 0%, rgba(233, 185, 73, 0.08) 100%); border-left: 4px solid var(--coral);">
+       <div class="flex items-center space-x-3 mb-4"><span class="text-3xl">🎯</span>
+        <div>
+         <div class="font-semibold" style="color: var(--coral);">
+          Next Session
+         </div>
+         <div class="text-gray-600 text-sm">
+          Interactive Workshop
+         </div>
+        </div>
+       </div>
+       <h3 class="font-display text-xl font-bold mb-3" style="color: var(--dark);">Budget Breakthrough</h3>
+       <p class="text-gray-600 mb-4">A hands-on workshop where you'll create a personalized budget that aligns with your goals and lifestyle.</p>
+       <div class="flex items-center space-x-2 text-sm" style="color: var(--gold);"><span>⏱️</span> <span>90 Minutes</span> <span>•</span> <span>👥</span> <span>Small Group</span>
+       </div>
+      </div><!-- Speaking -->
+      <div class="event-card p-6 rounded-xl" style="background: linear-gradient(135deg, rgba(138, 177, 125, 0.12) 0%, rgba(42, 157, 143, 0.08) 100%); border-left: 4px solid var(--soft-green);">
+       <div class="flex items-center space-x-3 mb-4"><span class="text-3xl">🎤</span>
+        <div>
+         <div class="font-semibold" style="color: var(--soft-green);">
+          Available for Booking
+         </div>
+         <div class="text-gray-600 text-sm">
+          Speaking Engagement
+         </div>
+        </div>
+       </div>
+       <h3 class="font-display text-xl font-bold mb-3" style="color: var(--dark);">Invite Me to Speak</h3>
+       <p class="text-gray-600 mb-4">Hosting an event? I'd love to share empowering financial literacy content with your audience.</p><a href="#contact" class="inline-block font-semibold transition-colors" style="color: var(--teal);"> Request a Speaker → </a>
+      </div>
+     </div>
+    </div>
+   </section><!-- Book Section -->
+   <section id="book" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="flex justify-center">
+       <div class="book-card p-8 rounded-2xl float-animation"><img src="https://m.media-amazon.com/images/I/611LUI+osCL._SL1293_.jpg" alt="Journal to Success 2026 Book Cover" loading="lazy" class="w-64 h-80 rounded-lg object-cover shadow-lg" onerror="console.error('Book image failed to load:', this.src); this.style.background='linear-gradient(135deg, var(--gold), var(--coral))'; this.alt='Book cover unavailable';">
+       </div>
+      </div>
+      <div><span class="font-semibold tracking-widest uppercase text-sm" style="color: var(--coral);">Now Available</span>
+       <h2 id="book-title" class="font-display text-4xl md:text-5xl font-bold mt-4 mb-6" style="color: var(--dark);">Journal to Success 2026</h2>
+       <p class="text-gray-700 text-lg leading-relaxed mb-6">Your comprehensive companion for building better financial habits in 2026. This isn't just a journal—it's a roadmap to transforming your relationship with money.</p>
+       <ul class="space-y-3 mb-8">
+        <li class="flex items-center space-x-3"><span style="color: var(--teal); font-size: 1.25rem;">📝</span> <span class="text-gray-700">Daily budget tracking pages</span></li>
+        <li class="flex items-center space-x-3"><span style="color: var(--coral); font-size: 1.25rem;">🎯</span> <span class="text-gray-700">Monthly goal setting prompts</span></li>
+        <li class="flex items-center space-x-3"><span style="color: var(--gold); font-size: 1.25rem;">💰</span> <span class="text-gray-700">Savings challenges &amp; trackers</span></li>
+        <li class="flex items-center space-x-3"><span style="color: var(--soft-green); font-size: 1.25rem;">✨</span> <span class="text-gray-700">Mindset &amp; motivation exercises</span></li>
+       </ul><a href="https://www.amazon.com/Journal-Budget-Success-Patricia-Richardson/dp/B0G1BC6J9J/ref=sr_1_1?crid=1E6X5S12EXMU6&amp;dib=eyJ2IjoiMSJ9.UsRI_ByM-miEgYfvYrE_n3uzqdmhJioTT_aMkpWibKMlsy8dzCMau1nTuWpyToSMrwhQDiG0FpvI-SVxBzhl50iYOSkX4LZwhRAfsB-eulYboB8OZqU0XC627mMyEEVbnf43JuAQZ2HgPiGIbWgecsaaKSTOFrtQvDu4JpvrvfGGvIcr2NniTnm02yGsFjK2IJ88Xw6_eAbB1l7JbsYNSqB8KCTjZEMTkuiAh_Ls8Vc.CIZs5kSvadwqLcDaY9mmDVSPwzq5LvmS15EJahremJs&amp;dib_tag=se&amp;keywords=journal+to+success+book+2026&amp;qid=1770238304&amp;sprefix=%2Caps%2C158&amp;sr=8-1" target="_blank" rel="noopener noreferrer" class="btn-gold inline-flex items-center space-x-2 text-gray-900 font-bold px-8 py-4 rounded-full text-lg"> <span>Get Your Copy on Amazon</span> <span>→</span> </a>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-24 px-6" style="background: linear-gradient(135deg, rgba(38, 70, 83, 0.08) 0%, rgba(42, 157, 143, 0.05) 100%);">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-16"><span class="font-semibold tracking-widest uppercase text-sm" style="color: var(--coral);">Get In Touch</span>
+      <h2 class="font-display text-4xl md:text-5xl font-bold mt-4" style="color: var(--dark);">Let's Work Together</h2>
+      <p class="text-gray-600 mt-4">Ready to transform your finances? Request coaching or invite me to speak at your event.</p>
+     </div>
+     <div class="input-field" style="background: linear-gradient(135deg, rgba(42, 157, 143, 0.08) 0%, rgba(138, 177, 125, 0.05) 100%); border: 1px solid rgba(42, 157, 143, 0.2);">
+      <form id="contact-form" class="space-y-6 p-8">
+       <div class="grid md:grid-cols-2 gap-6">
+        <div><label for="name" class="block text-sm font-semibold mb-2" style="color: var(--dark);">Your Name</label> <input type="text" id="name" placeholder="Enter your name" class="input-field w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400" required>
+        </div>
+        <div><label for="email" class="block text-sm font-semibold mb-2" style="color: var(--dark);">Email Address</label> <input type="email" id="email" placeholder="your@email.com" class="input-field w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400" required>
+        </div>
+       </div>
+       <div><label for="message" class="block text-sm font-semibold mb-2" style="color: var(--dark);">What You Need</label> <textarea id="message" rows="4" placeholder="Tell me about coaching, speaking requests, questions, or how you'd like to get involved..." class="input-field w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400 resize-none" required></textarea>
+       </div><button type="submit" id="submit-btn" class="btn-gold w-full text-gray-900 font-bold py-4 rounded-full text-lg flex items-center justify-center space-x-2"> <span id="btn-text">Send Message</span> <span id="btn-loader" class="hidden">
+         <svg class="animate-spin h-5 w-5" viewbox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle> <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+         </svg></span> </button>
+      </form>
+     </div>
+    </div>
+   </section><!-- Make An Impact Section -->
+   <section id="impact" class="py-24 px-6 gradient-accent">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16"><span class="font-semibold tracking-widest uppercase text-sm" style="color: var(--gold);">Join Our Community</span>
+      <h2 class="font-display text-4xl md:text-5xl font-bold mt-4 text-white">Make An Impact</h2>
+      <p class="text-gray-100 mt-4 max-w-2xl mx-auto">Whether you want to give, volunteer, or partner with us, there are many ways to support our mission of spreading financial literacy.</p>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="card-glass p-8 rounded-2xl text-center hover:scale-105 transition-transform cursor-pointer" onclick="window.open('https://www.paypal.com', '_blank', 'noopener,noreferrer')" style="background: linear-gradient(135deg, rgba(233, 185, 73, 0.15) 0%, rgba(139, 177, 125, 0.1) 100%); border: 1px solid rgba(233, 185, 73, 0.3);">
+       <div class="text-6xl mb-6">
+        💝
+       </div>
+       <h3 class="font-display text-2xl font-bold mb-3 text-white">Donate</h3>
+       <p class="text-gray-200 mb-6">Support our mission to spread financial literacy to underserved communities. Every contribution helps us reach more people.</p><span class="inline-block text-amber-400 font-semibold hover:text-amber-300 transition-colors">Make a Donation →</span>
+      </div>
+      <div class="card-glass p-8 rounded-2xl text-center hover:scale-105 transition-transform cursor-pointer" onclick="document.getElementById('message').value='I would like to volunteer with EmpowerHub. '; document.getElementById('message').focus(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" style="background: linear-gradient(135deg, rgba(231, 111, 81, 0.15) 0%, rgba(42, 157, 143, 0.1) 100%); border: 1px solid rgba(231, 111, 81, 0.3);">
+       <div class="text-6xl mb-6">
+        🤝
+       </div>
+       <h3 class="font-display text-2xl font-bold mb-3 text-white">Volunteer</h3>
+       <p class="text-gray-200 mb-6">Share your expertise and help us empower more people with financial knowledge. We need passionate individuals like you.</p><span class="inline-block text-amber-400 font-semibold hover:text-amber-300 transition-colors">Get Involved →</span>
+      </div>
+      <div class="card-glass p-8 rounded-2xl text-center hover:scale-105 transition-transform cursor-pointer" onclick="document.getElementById('message').value='I am interested in partnering with EmpowerHub. '; document.getElementById('message').focus(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" style="background: linear-gradient(135deg, rgba(138, 177, 125, 0.15) 0%, rgba(42, 157, 143, 0.1) 100%); border: 1px solid rgba(138, 177, 125, 0.3);">
+       <div class="text-6xl mb-6">
+        🌟
+       </div>
+       <h3 class="font-display text-2xl font-bold mb-3 text-white">Partner With Us</h3>
+       <p class="text-gray-200 mb-6">Collaborate with EmpowerHub to amplify financial literacy in your community and create lasting change together.</p><span class="inline-block text-amber-400 font-semibold hover:text-amber-300 transition-colors">Explore Partnership →</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12 px-6 border-t" style="background: white; border-color: rgba(42, 157, 143, 0.2);">
+    <div class="max-w-6xl mx-auto text-center">
+     <div class="font-display text-2xl font-bold gold-gradient mb-4">
+      EmpowerHub
+     </div>
+     <p class="text-gray-600 mb-6">Empowering financial futures, one person at a time.</p>
+     <div class="text-gray-500 text-sm">
+      © 2025 EmpowerHub. All rights reserved.
+     </div>
+    </div>
+   </footer><!-- Toast Notification -->
+   <div id="toast" class="toast"></div>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      hero_title: 'EmpowerHub',
+      hero_subtitle: 'Transform your relationship with money. Build wealth with confidence. Create the financial future you deserve.',
+      about_title: 'Why I Do This',
+      about_text: 'I believe everyone deserves access to financial knowledge that can transform their lives. After witnessing too many people struggle with money—not because they don\'t work hard, but because no one taught them the fundamentals—I made it my mission to bridge that gap.',
+      book_title: 'Journal to Success 2026',
+      primary_color: '#E9B949',
+      secondary_color: '#264653',
+      text_color: '#FDF8F3',
+      accent_color: '#2A9D8F',
+      surface_color: '#1f4f47'
+    };
+
+    let config = { ...defaultConfig };
+    let currentRecordCount = 0;
+
+    // Toast notification
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type} show`;
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+
+    // Data handler for SDK
+    const dataHandler = {
+      onDataChanged(data) {
+        currentRecordCount = data.length;
+      }
+    };
+
+    // Render function for config changes
+    async function onConfigChange(cfg) {
+      document.getElementById('hero-title').textContent = cfg.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-subtitle').textContent = cfg.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('about-title').textContent = cfg.about_title || defaultConfig.about_title;
+      document.getElementById('about-text').textContent = cfg.about_text || defaultConfig.about_text;
+      document.getElementById('book-title').textContent = cfg.book_title || defaultConfig.book_title;
+      document.getElementById('nav-logo').textContent = cfg.hero_title || defaultConfig.hero_title;
+    }
+
+    // Map to capabilities for color/font editing
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              cfg.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
+            }
+          },
+          {
+            get: () => cfg.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              cfg.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              cfg.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              cfg.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    // Map to edit panel values
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['hero_title', cfg.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', cfg.hero_subtitle || defaultConfig.hero_subtitle],
+        ['about_title', cfg.about_title || defaultConfig.about_title],
+        ['about_text', cfg.about_text || defaultConfig.about_text],
+        ['book_title', cfg.book_title || defaultConfig.book_title]
+      ]);
+    }
+
+    // Initialize SDKs
+    async function init() {
+      // Initialize Element SDK
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities,
+          mapToEditPanelValues
+        });
+        config = window.elementSdk.config || config;
+      }
+
+      // Initialize Data SDK
+      if (window.dataSdk) {
+        const initResult = await window.dataSdk.init(dataHandler);
+        if (!initResult.isOk) {
+          console.error('Failed to initialize data SDK');
+        }
+      }
+
+      // Initial render
+      await onConfigChange(config);
+
+      // Form handling
+      const form = document.getElementById('contact-form');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (currentRecordCount >= 999) {
+          showToast('Maximum submissions reached. Please try again later.', 'error');
+          return;
+        }
+
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoader = document.getElementById('btn-loader');
+
+        submitBtn.disabled = true;
+        btnText.textContent = 'Sending...';
+        btnLoader.classList.remove('hidden');
+
+        const formData = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          message: document.getElementById('message').value,
+          created_at: new Date().toISOString()
+        };
+
+        if (window.dataSdk) {
+          const result = await window.dataSdk.create(formData);
+          
+          if (result.isOk) {
+            showToast('Message sent successfully! I\'ll be in touch soon.', 'success');
+            form.reset();
+          } else {
+            showToast('Something went wrong. Please try again.', 'error');
+          }
+        } else {
+          showToast('Message sent successfully!', 'success');
+          form.reset();
+        }
+
+        submitBtn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnLoader.classList.add('hidden');
+      });
+
+      // Smooth scroll for navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    }
+
+    init();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c9499a7a4e86ba3',t:'MTc3MDMxNzQ5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
