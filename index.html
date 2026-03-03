@@ -186,8 +186,8 @@
   <div id="app" class="w-full h-full gradient-bg text-white overflow-auto"><!-- Navigation -->
    <nav class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-95 backdrop-blur-md border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-     <div class="font-display text-2xl font-bold" id="nav-logo" style="background: linear-gradient(135deg, var(--dark) 0%, var(--teal) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-      EmpowerHub
+     <div id="nav-logo">
+     <img src="EmpowerHubLogo.png" alt="EmpowerHub logo" width="130" height="130">
      </div>
      <div class="hidden md:flex space-x-8"><a href="#about" class="nav-link" style="color: var(--dark);">About</a> <a href="#events" class="nav-link" style="color: var(--dark);">Events</a> <a href="#book" class="nav-link" style="color: var(--dark);">Book</a> <a href="#contact" class="nav-link" style="color: var(--dark);">Contact</a>
      </div><a href="#contact" class="btn-gold text-gray-900 font-semibold px-6 py-2 rounded-full">Work With Me</a>
@@ -235,7 +235,7 @@
       <div><span class="font-semibold tracking-widest uppercase text-sm" style="color: var(--coral);">My Story</span>
        <h2 id="about-title" class="font-display text-4xl md:text-5xl font-bold mt-4 mb-6" style="color: var(--dark);">Why I Do This</h2>
        <p id="about-text" class="text-gray-700 text-lg leading-relaxed mb-6">I believe everyone deserves access to financial knowledge that can transform their lives. After witnessing too many people struggle with money—not because they don't work hard, but because no one taught them the fundamentals—I made it my mission to bridge that gap.</p>
-       <p class="text-gray-700 text-lg leading-relaxed mb-6">EmpowerHub was born from a simple belief: financial literacy isn't a luxury, it's a necessity. Through personalized coaching, engaging workshops, and practical resources, I help individuals and families take control of their financial destinies.</p>
+       <p class="text-gray-700 text-lg leading-relaxed mb-6"></p>
        <div class="grid grid-cols-2 gap-6 mt-10">
         <div class="card-glass p-6 rounded-xl" style="background: linear-gradient(135deg, rgba(42, 157, 143, 0.15) 0%, rgba(138, 177, 125, 0.1) 100%); border: 1px solid rgba(42, 157, 143, 0.3);">
          <div class="text-3xl mb-2">
@@ -356,7 +356,7 @@
         <div><label for="email" class="block text-sm font-semibold mb-2" style="color: var(--dark);">Email Address</label> <input type="email" id="email" placeholder="your@email.com" class="input-field w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400" required>
         </div>
        </div>
-       <div><label for="message" class="block text-sm font-semibold mb-2" style="color: var(--dark);">What You Need</label> <textarea id="message" rows="4" placeholder="Tell me about coaching, speaking requests, questions, or how you'd like to get involved..." class="input-field w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400 resize-none" required></textarea>
+       <div><label for="message" class="block text-sm font-semibold mb-2" style="color: var(--dark);">How Can We Help</label> <textarea id="message" rows="4" placeholder="Tell me about coaching, speaking requests, questions, or how you'd like to get involved..." class="input-field w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-400 resize-none" required></textarea>
        </div><button type="submit" id="submit-btn" class="btn-gold w-full text-gray-900 font-bold py-4 rounded-full text-lg flex items-center justify-center space-x-2"> <span id="btn-text">Send Message</span> <span id="btn-loader" class="hidden">
          <svg class="animate-spin h-5 w-5" viewbox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle> <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
          </svg></span> </button>
@@ -414,7 +414,7 @@
       hero_title: 'EmpowerHub',
       hero_subtitle: 'Transform your relationship with money. Build wealth with confidence. Create the financial future you deserve.',
       about_title: 'Why I Do This',
-      about_text: 'I believe everyone deserves access to financial knowledge that can transform their lives. After witnessing too many people struggle with money—not because they don\'t work hard, but because no one taught them the fundamentals—I made it my mission to bridge that gap.',
+      about_text: 'Empowering families to achieve self-sufficiency and foster positive relationships between the families and the community. Offering online and in-person training, parenting classes, conducting events, workshops, working with children, teens, adults, veterans, single parents, refugees, homelessness, networking and more.',
       book_title: 'Journal to Success 2026',
       primary_color: '#E9B949',
       secondary_color: '#264653',
@@ -450,7 +450,7 @@
       document.getElementById('about-title').textContent = cfg.about_title || defaultConfig.about_title;
       document.getElementById('about-text').textContent = cfg.about_text || defaultConfig.about_text;
       document.getElementById('book-title').textContent = cfg.book_title || defaultConfig.book_title;
-      document.getElementById('nav-logo').textContent = cfg.hero_title || defaultConfig.hero_title;
+      /* document.getElementById('nav-logo').textContent = cfg.hero_title || defaultConfig.hero_title; */
     }
 
     // Map to capabilities for color/font editing
